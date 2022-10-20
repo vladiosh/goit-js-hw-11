@@ -22,9 +22,14 @@ function handleSubmit(evt) {
 
   pixabay.searchQuery = query;
 
-  pixabay.getPhotos().then(({ hits }) => {
+  pixabay.getPhotos().then(({ hits, total }) => {
     const markup = createMarkup(hits);
     refs.listRef.insertAdjacentHTML('beforeend', markup);
+    pixabay.calculateTotalPages(total);
+    console.log(pixabay);
+    if (pixabay.isShowLoadMore) {
+      refs.loadMoreBtnRef.classList.remove('visually-hidden');
+    }
   });
 }
 
