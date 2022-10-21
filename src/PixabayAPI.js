@@ -31,6 +31,10 @@ export class PixabayAPI {
     this.#page += 1;
   }
 
+  resetPage() {
+    this.#page = 1;
+  }
+
   calculateTotalPages(total) {
     this.#totalPages = Math.ceil(total / this.#perPage);
   }
