@@ -36,6 +36,6 @@ export class PixabayAPI {
   }
 
   get isShowLoadMore() {
-    this.#page < this.#totalPages;
+    return this.#page < this.#totalPages;
   }
 }

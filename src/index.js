@@ -25,8 +25,10 @@ function handleSubmit(evt) {
   pixabay.getPhotos().then(({ hits, total }) => {
     const markup = createMarkup(hits);
     refs.listRef.insertAdjacentHTML('beforeend', markup);
+
     pixabay.calculateTotalPages(total);
     console.log(pixabay);
+
     if (pixabay.isShowLoadMore) {
       refs.loadMoreBtnRef.classList.remove('visually-hidden');
     }
