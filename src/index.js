@@ -20,12 +20,6 @@ function handleSubmit(evt) {
   if (!query) {
     return;
   }
-  //   else if () {
-  //     Notiflix.Notify.success(`Hooray! We found ${query.totalHits} images.`, {
-  //           timeout: 3000,
-  //           position: 'left-top',
-  //   })
-  //   }
 
   pixabay.searchQuery = query;
   clearPage();
@@ -34,6 +28,12 @@ function handleSubmit(evt) {
   pixabay
     .getPhotos()
     .then(({ hits, total }) => {
+      if (hits.length === 0) {
+        Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+        return;
+      }
       const markup = createMarkup(hits);
       refs.listRef.insertAdjacentHTML('beforeend', markup);
 
