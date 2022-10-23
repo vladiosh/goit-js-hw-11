@@ -19,20 +19,23 @@ const callback = async function (entries, observer) {
     if (entry.isIntersecting) {
       console.log(entry.intersectionRect);
       pixabay.incrementPage();
-      //   console.log(pixabay);
-      io.unobserve(entry.target);
-      if (!pixabay.isShowLoadMore) {
-        io.unobserve(entry.target);
-        Notiflix.Notify.info(
-          "We're sorry, but you've reached the end of search results."
-        );
-      }
+
+      observer.unobserve(entry.target);
+
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
 
       try {
         const { hits } = await pixabay.getPhotos();
 
         const markup = createMarkup(hits);
         refs.listRef.insertAdjacentHTML('beforeend', markup);
+        if (pixabay.isShowLoadMore) {
+          const target = document.querySelector('.photo-card:last-child');
+
+          io.observe(target);
+        }
       } catch (error) {
         console.log(error);
         clearPage();
@@ -79,7 +82,7 @@ async function handleSubmit(evt) {
     if (pixabay.isShowLoadMore) {
       //   refs.loadMoreBtnRef.classList.remove('visually-hidden');
       const target = document.querySelector('.photo-card:last-child');
-      console.log(target);
+
       io.observe(target);
     }
   } catch (error) {

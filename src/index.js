@@ -41,7 +41,7 @@ async function handleSubmit(evt) {
       timeout: 1000,
       position: 'left-top',
     });
-    console.log(pixabay);
+    // console.log(pixabay);
 
     if (pixabay.isShowLoadMore) {
       refs.loadMoreBtnRef.classList.remove('visually-hidden');
