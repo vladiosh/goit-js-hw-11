@@ -80,6 +80,11 @@ button {
     0px 2px 1px rgb(0 0 0 / 20%);
   border-radius: 0px 0px 4px 4px;
   height: 195px;
+  transition-duration: 500ms;
+}
+
+.photo-card:hover {
+  transform: scale(1.25);
 }
 
 .link {
@@ -117,6 +122,7 @@ b {
 }
 
 .info {
+  background-color: #fafafa;
   display: flex;
   justify-content: center;
   padding: 10px 0 10px 0;

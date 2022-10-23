@@ -22,9 +22,11 @@ const callback = async function (entries, observer) {
 
       observer.unobserve(entry.target);
 
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
+      if (!pixabay.isShowLoadMore) {
+        Notiflix.Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
+      }
 
       try {
         const { hits } = await pixabay.getPhotos();
